@@ -1,17 +1,20 @@
 <template>
-  <ul class="list ul-reset-default-style">
-    <li class="item">
-      <a class="link a-reset-default-style" href="#">
-        <div class="images-block">
-          <img src="../assets/img/hotel_photo_stub.jpg" alt="фото отеля 1" width="350" height="250">
-        </div>
-        <div class="text-block">
-          <h3 class="item-title h3-reset-default-style">Название Отеля</h3>
-          <p class="item-description p-reset-default-style">Описание Отеля</p>
-        </div>
-      </a>
-    </li>
-  </ul>
+  <div>
+    <h2 class="catalog-title h2-reset-default-style">Каталог</h2>
+    <ul class="list ul-reset-default-style">
+      <li class="item">
+        <router-link class="link a-reset-default-style" to="/hotels-details">
+          <div class="images-block">
+            <img src="../assets/img/hotel_photo_stub.jpg" alt="фото отеля 1" width="350" height="250">
+          </div>
+          <div class="text-block">
+            <h3 class="item-title h3-reset-default-style">Название Отеля</h3>
+            <p class="item-description p-reset-default-style">Описание Отеля</p>
+          </div>
+        </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -21,6 +24,10 @@
 </script>
 
 <style scoped lang="scss">
+  .catalog-title {
+    margin: 20px 0;
+  }
+
   .title {
     margin: 20px 0;
   }
