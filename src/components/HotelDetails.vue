@@ -6,25 +6,25 @@
       <p class="description p-reset-default-style">{{ hotelsData[index].body }}</p>
     </div>
     <form class="booking-form">
-      <div class="booking-form-field-wrapper">
-        <label class="booking-form-label" for="address">Адрес:</label>
-        <input class="booking-form-input" type="text" id="address" maxlength="150">
+      <div class="field-wrapper">
+        <label class="label" for="address">Адрес:</label>
+        <input class="input" type="text" id="address" maxlength="150">
       </div>
-      <div class="booking-form-field-wrapper">
-        <label class="booking-form-label" for="name">Имя:</label>
-        <input class="booking-form-input" type="text" id="name" maxlength="50">
+      <div class="field-wrapper">
+        <label class="label" for="name">Имя:</label>
+        <input class="input" type="text" id="name" maxlength="50">
       </div>
-      <div class="booking-form-field-wrapper">
-        <label class="booking-form-label" for="telephone">Телефон:</label>
+      <div class="field-wrapper">
+        <label class="label" for="telephone">Телефон:</label>
         <input 
-          class="booking-form-input"
+          class="input"
           type="tel" 
           id="telephone" 
           placeholder="в формате +7 987 6543210"
           pattern="\+7\s[0-9]{3}\s[0-9]{7}"
         >
       </div>
-      <button class="booking-form-button-submit" type="submit">Забронировать</button>
+      <button class="button-submit" type="submit">Забронировать</button>
     </form>
     <div>
       <p>Бронь подтверждена. Спасибо за заявку!</p>
@@ -52,16 +52,16 @@
 </script>
 
 <style scoped lang="scss">
-  .details {
-    display: flex;
-  }
-
   .title {
     margin-bottom: 15px;
   }
 
-  .description {
-    padding: 10px;
+  .details {
+    display: flex;
+
+    .description {
+      padding: 10px;
+    }
   }
 
   .booking-form {
@@ -73,24 +73,24 @@
     margin-left: 50%;
 
     transform: translateX(-50%);
-  }
 
-  .booking-form-field-wrapper {
-    display: flex;
-    margin-bottom: 10px;
-  }
+    .field-wrapper {
+      display: flex;
+      margin-bottom: 10px;
 
-  .booking-form-label {
-    flex: 0 0 30%;
-    text-align: end;
-    margin-right: 5px;
-  }
+      .label {
+        flex: 0 0 30%;
+        text-align: end;
+        margin-right: 5px;
+      }
 
-  .booking-form-input {
-    flex-basis: 70%;
-  }
+      .input {
+        flex-basis: 70%;
+      }
+    }
 
-  .booking-form-button-submit {
-    align-self: flex-end;
+    .button-submit {
+      align-self: flex-end;
+    }
   }
 </style>

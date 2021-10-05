@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="catalog-title h2-reset-default-style">Каталог</h2>
-    <ul class="list ul-reset-default-style">
+    <h2 class="title h2-reset-default-style">Каталог</h2>
+    <ul class="ul-reset-default-style">
       <li class="item" v-for="(hotel, i) in hotelsData" :key="i">
         <router-link class="link a-reset-default-style" :to="`/hotels-details/${i}`">
           <div class="images-block">
@@ -34,10 +34,6 @@
 </script>
 
 <style scoped lang="scss">
-  .catalog-title {
-    margin: 20px 0;
-  }
-
   .title {
     margin: 20px 0;
   }
@@ -46,25 +42,25 @@
     padding: 5px;
 
     border-bottom: 1px solid black;
-  }
 
-  .link {
-    display: flex;
-  }
+    .link {
+      display: flex;
 
-  .images-block {
-    margin-right: 15px;
-  }
+      .images-block {
+        margin-right: 15px;
+      }
 
-  .text-block {
-    flex-grow: 1;
+      .text-block {
+        flex-grow: 1;
 
-    text-align: left;
+        text-align: left;
 
-    padding: 20px;
-  }
+        padding: 20px;
 
-  .item-title {
-    margin-bottom: 15px;
+        .item-title {
+          margin-bottom: 15px;
+        }
+      }
+    }
   }
 </style>

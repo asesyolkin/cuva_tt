@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <h1 class="main-title h1-reset-default-style">Система онлайн бронирования отелей</h1>
+    <h1 class="title h1-reset-default-style">Система онлайн бронирования отелей</h1>
     <router-view/>
   </main>
 </template>
@@ -15,9 +15,10 @@
   .main {
     width: 1200px;
     margin: 0 auto;
+    
+    .title {
+      margin: 20px 0;
+    }
   }
 
-  .main-title {
-    margin: 20px 0;
-  }
 </style>
