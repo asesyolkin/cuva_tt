@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <img src="../assets/cuva_logo_white.png" alt="Логотип" width="200" height="77">
+    <router-link class=" a-reset-default-style"  :to="`/`">
+      <img src="../assets/cuva_logo_white.png" alt="Логотип" width="200" height="77">
+    </router-link>
   </header>
 </template>
 
