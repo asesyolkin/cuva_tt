@@ -5,14 +5,14 @@
       <img src="../assets/img/hotel_photo_stub.jpg" alt="фото отеля 1" width="350" height="250">
       <p class="description p-reset-default-style">{{ hotelsData[index].body }}</p>
     </div>
-    <form class="booking-form">
+    <form class="booking-form" v-if="!formSent">
       <div class="field-wrapper">
         <label class="label" for="address">Адрес:</label>
-        <input class="input" type="text" id="address" maxlength="150">
+        <input class="input" type="text" id="address" maxlength="150" required v-model="formData.address">
       </div>
       <div class="field-wrapper">
         <label class="label" for="name">Имя:</label>
-        <input class="input" type="text" id="name" maxlength="50">
+        <input class="input" type="text" id="name" maxlength="50" required v-model="formData.name">
       </div>
       <div class="field-wrapper">
         <label class="label" for="telephone">Телефон:</label>
@@ -22,12 +22,14 @@
           id="telephone" 
           placeholder="в формате +7 987 6543210"
           pattern="\+7\s[0-9]{3}\s[0-9]{7}"
+          required
+          v-model="formData.telephone"
         >
       </div>
-      <button class="button-submit" type="submit">Забронировать</button>
+      <button class="button-submit" type="submit" @click="handlerButtonSubmit">Забронировать</button>
     </form>
-    <div>
-      <p>Бронь подтверждена. Спасибо за заявку!</p>
+    <div v-else class="confirmation-of-dispatch-block">
+      <p class="p-reset-default-style">Бронь подтверждена. Спасибо за заявку!</p>
     </div>
   </div>
 </template>
@@ -40,9 +42,34 @@
     props: {
       index: String
     },
-    computed: mapState([
-      'hotelsData'
-    ]),
+    data() {
+      return {
+        formSent: false,
+        formData: {
+          address: '',
+          name: '',
+          telephone: '',
+        },
+        inputTelRegexp: /\+7\s[0-9]{3}\s[0-9]{7}/
+      }
+    },
+    computed: {
+      ...mapState([
+        'hotelsData'
+      ]),
+      allFieldsAreFilled() {
+        return this.formData.address && 
+               this.formData.address && 
+               this.formData.telephone.match(new RegExp(this.inputTelRegexp));
+      }
+    },
+    methods: {
+      handlerButtonSubmit() {
+        if (this.allFieldsAreFilled) {
+          this.$set(this, 'formSent', true)
+        }
+      }
+    },
     mounted() {
       if (!this.hotelsData.length) {
         this.$store.dispatch('loadHotelsData')
@@ -92,5 +119,9 @@
     .button-submit {
       align-self: flex-end;
     }
+  }
+
+  .confirmation-of-dispatch-block {
+    margin: 50px 0;
   }
 </style>
