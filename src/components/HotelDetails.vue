@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h2 class="title h2-reset-default-style">Отель...</h2>
+  <div v-if="hotelsData.length">
+    <h2 class="title h2-reset-default-style">{{ hotelsData[index].title }}</h2>
     <div class="details">
       <img src="../assets/img/hotel_photo_stub.jpg" alt="фото отеля 1" width="350" height="250">
-      <p class="description p-reset-default-style">Описание Отеля</p>
+      <p class="description p-reset-default-style">{{ hotelsData[index].body }}</p>
     </div>
     <form class="booking-form">
       <div class="booking-form-field-wrapper">
@@ -33,8 +33,21 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    name: 'HotelDetails'
+    name: 'HotelDetails',
+    props: {
+      index: String
+    },
+    computed: mapState([
+      'hotelsData'
+    ]),
+    mounted() {
+      if (!this.hotelsData.length) {
+        this.$store.dispatch('loadHotelsData')
+      }
+    }
   }
 </script>
 

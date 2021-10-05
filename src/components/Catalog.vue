@@ -2,14 +2,14 @@
   <div>
     <h2 class="catalog-title h2-reset-default-style">Каталог</h2>
     <ul class="list ul-reset-default-style">
-      <li class="item">
-        <router-link class="link a-reset-default-style" to="/hotels-details">
+      <li class="item" v-for="(hotel, i) in hotelsData" :key="i">
+        <router-link class="link a-reset-default-style" :to="`/hotels-details/${i}`">
           <div class="images-block">
-            <img src="../assets/img/hotel_photo_stub.jpg" alt="фото отеля 1" width="350" height="250">
+            <img src="../assets/img/hotel_photo_stub.jpg" :alt="`фото ${hotel.title}`" width="350" height="250">
           </div>
           <div class="text-block">
-            <h3 class="item-title h3-reset-default-style">Название Отеля</h3>
-            <p class="item-description p-reset-default-style">Описание Отеля</p>
+            <h3 class="item-title h3-reset-default-style">{{ hotel.title }}</h3>
+            <p class="item-description p-reset-default-style">{{ hotel.body }}</p>
           </div>
         </router-link>
       </li>
@@ -18,8 +18,18 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    name: 'Catalog'
+    name: 'Catalog',
+    computed: mapState([
+      'hotelsData'
+    ]),
+    mounted() {
+      if (!this.hotelsData.length) {
+        this.$store.dispatch('loadHotelsData')
+      }
+    }
   }
 </script>
 
